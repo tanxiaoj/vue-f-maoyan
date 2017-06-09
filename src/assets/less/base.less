@@ -1,0 +1,60 @@
+// .border(@w:1px,@color:#dedede){
+// 	border: @w solid @color; 
+// }
+// asset file default url 
+@images: ".././assets/images/" ; 
+
+.text-ellipsis{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+//三角形
+.arrow(@hc:white,@bc:#e54847,@l:-5px,@t:12px,@w:14px,@h:12px){
+    position: absolute;
+    left: @l;
+    top: @t;
+    width: 0;
+    height: 0;
+    border-left: @w solid transparent;
+    border-right: @w solid @hc;
+    border-top: @h solid transparent;
+    border-bottom: @h solid transparent;
+    &::after {
+        position: absolute;
+        content: "";
+        top: -12px;
+        left: -11px;
+        width: 0;
+        height: 0;
+        border-left: @w solid transparent;
+        border-right: @w solid @bc;
+        border-top: @h solid transparent;
+        border-bottom: @h solid transparent;
+    }	
+}
+.border-none{
+	border-bottom: none;
+}
+
+@media (-webkit-min-device-pixel-ratio:1.5) , (min-device-pixel-ratio:1.5){
+	.border-1px(@c:#dedede){
+		border:1px solid @c;
+		&::after{
+				content: "";
+				-webkit-transform:scaleY(0.7);
+				transform:scaleY(0.7);
+			}
+	}
+}
+
+@media (-webkit-min-device-pixel-ratio:2) , (min-device-pixel-ratio:2){
+	.border-1px(@c:#dedede){
+		border:1px solid @c;
+		&::after{
+				content: "";
+				-webkit-transform:scaleY(0.5);
+				transform:scaleY(0.5);
+			}
+	}
+}
