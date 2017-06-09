@@ -13,5 +13,8 @@ export default {
 	},
 	[type.MOVIE_DETAIL](state ,data){
 		state.movieDetail = data.data ;
+	},
+	[type.CINEMA_DETAIL](state ,data){
+		state.cinemaDetail = data.data ;
 	}
 };

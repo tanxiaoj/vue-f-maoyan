@@ -32,11 +32,27 @@ export default {
 		    console.log(response);
 		});				
 	},
-	movies_detail ({commit},movieId=247731){
+	movie_detail ({commit},movieId=247731){
 		util.ajax(`${api.moveDetail}/${movieId}.json`)
 		.then(function (response) {
 			var data = response.data ;
             commit("MOVIE_DETAIL",data)
+		})
+		.catch(function (response) {
+		    console.log(response);
+		});			
+	},
+	cinama_detail ({commit},cinemaid=11533,movieId=""){
+		util.ajax(api.cinemaDetail,{
+			params:{
+				cinemaid :cinemaid ,
+				movieid :movieId
+			}
+		})
+		.then(function (response) {
+			var data = response.data ;
+			console.log(data)
+            commit("CINEMA_DETAIL",data)
 		})
 		.catch(function (response) {
 		    console.log(response);

@@ -24,7 +24,7 @@
 		},
 		methods :{
 			load(){
-				this.$store.dispatch("movies_detail", this.movieId);
+				this.$store.dispatch("movie_detail", this.movieId);
 			}
 		},
 		components :{

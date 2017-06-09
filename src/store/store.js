@@ -11,6 +11,7 @@ const state = {
 	movies : [],
 	cinemas :{},
 	movieDetail :{},
+	cinemaDetail :{},
 	comment :["1"]
 }
 Vue.config.debug = true;

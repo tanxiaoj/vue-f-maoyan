@@ -3,7 +3,7 @@
 		<ul>
 			<template v-for="list in localCinema">
 				<li class="item">
-					<router-link to>
+					<router-link :to="{ name: 'cinemaDetail',params: {title :list.nm,cinemaId:list.id}}">
 						<div class="cinema-name">
 							<span>{{list.nm}}</span>
 							<div class="price">
