@@ -1,7 +1,7 @@
 <template>
     <div class="headTop">
         <span>{{headName}}</span>
-        <router-link class="triangle-left" v-show="showReturn" :to="{path :'/'}"></router-link>
+        <router-link class="triangle-left" v-show="showReturn" :to="{path :url}"></router-link>
     </div>
 </template>
 
@@ -24,6 +24,12 @@ export default {
             type:Boolean,
             default (){
                 return false 
+            }
+        },
+        url : {
+            type :String ,
+            default (){
+                return '/'
             }
         }
     }

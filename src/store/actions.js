@@ -33,7 +33,8 @@ export default {
 		});				
 	},
 	movie_detail ({commit},movieId=247731){
-		util.ajax(`${api.moveDetail}/${movieId}.json`)
+		// util.ajax(`${api.moveDetail}/${movieId}.json`)
+		util.ajax('/')
 		.then(function (response) {
 			var data = response.data ;
             commit("MOVIE_DETAIL",data)
@@ -50,8 +51,8 @@ export default {
 			}
 		})
 		.then(function (response) {
+			
 			var data = response.data ;
-			console.log(data)
             commit("CINEMA_DETAIL",data)
 		})
 		.catch(function (response) {

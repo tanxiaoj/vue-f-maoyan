@@ -28,6 +28,11 @@ export default new Router({
       path: '/cinemaDetail',
       name: 'cinemaDetail',
       component: (resolve) => require(['@/views/cinemaDetail'], resolve)
+    },
+    {
+      path: '/selectSite',
+      name: 'selectSite',
+      component: (resolve) => require(['@/views/selectSite'], resolve)
     }
   ]
 })

@@ -3,7 +3,7 @@
 		<ul>
 			<template v-for="list in localCinema">
 				<li class="item">
-					<router-link :to="{ name: 'cinemaDetail',params: {title :list.nm,cinemaId:list.id}}">
+					<router-link :to="{ name: 'cinemaDetail',query: {title :list.nm,cinemaId:list.id}}">
 						<div class="cinema-name">
 							<span>{{list.nm}}</span>
 							<div class="price">
@@ -99,7 +99,7 @@
 			    	display: inline-block;
 			    	max-width: 220px;
 			    	margin-right: 10px;
-			    	.text-ellipsis
+			    	.text-ellipsis();
 			    }		
 			    .price{
 			    	display: inline-block;
@@ -114,7 +114,7 @@
 			.address{
 				width: 80%;
 				line-height: 45px;
-				.text-ellipsis
+				.text-ellipsis();
 			}
 			.tag-list{
 				span{

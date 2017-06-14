@@ -14,7 +14,7 @@
 		name : "movieTime",
 		data (){
 			return {
-				headName : this.$route.params.title ,
+				headName : this.$route.query.title ,
 				showReturn :true 
 			}
 		},

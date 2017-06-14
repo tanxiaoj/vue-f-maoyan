@@ -41,6 +41,7 @@ export default {
             this.swipeLine = new BScroll(this.$refs.swipeLine, {
               click: true ,
               scrollX: true ,
+              snap :true ,
               probeType : 3
             });            
         },

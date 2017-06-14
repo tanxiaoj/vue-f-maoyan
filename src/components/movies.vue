@@ -3,7 +3,7 @@
         <ul class="movielist">
             <template v-for="(list,index) in moviesList">
                 <li class="item">
-                    <router-link class="item-contain" :to="{ name: 'movieDetail',params: {title :list.nm,movieId:list.id}}">
+                    <router-link class="item-contain" :to="{ name: 'movieDetail',query: {title :list.nm,movieId:list.id}}">
                         <div class="left">
                             <img v-lazy="list.img" alt="">
                         </div>
@@ -21,7 +21,7 @@
                             <p class="movie-show">今天176家影院放映2281场</p>
                         </div>
                     </router-link>
-                    <router-link class="movie-btn" :to="{ name: 'movieTime',params: {title :list.nm}}" v-text="list.sc == 0?'预售':'购票'" :class="{current :!list.sc }">
+                    <router-link class="movie-btn" :to="{ name: 'movieTime',query: {title :list.nm}}" v-text="list.sc == 0?'预售':'购票'" :class="{current :!list.sc }">
                         购票
                     </router-link>
                 </li>
