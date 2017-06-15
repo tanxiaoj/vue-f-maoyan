@@ -1,7 +1,7 @@
 <template>
     <div class="headTop">
         <span>{{headName}}</span>
-        <router-link class="triangle-left" v-show="showReturn" :to="{path :url}"></router-link>
+        <div class="triangle-left" v-show="showReturn" @click="returnFn"></div>
     </div>
 </template>
 
@@ -25,12 +25,11 @@ export default {
             default (){
                 return false 
             }
-        },
-        url : {
-            type :String ,
-            default (){
-                return '/'
-            }
+        }
+    },
+    methods :{
+        returnFn (){
+            this.$router.go(-1)
         }
     }
 }

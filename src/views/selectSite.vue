@@ -1,12 +1,12 @@
 <template>
 	<div class="selectSite">
-		<headTop :show-return="showReturn" :head-name="headName" :url="returnUrl"></headTop>
+		<headTop :show-return="showReturn" :head-name="headName"></headTop>
 		<div class="cinema-mes clearfix">
 			<div class="movie-title">
 				<span>新木乃伊</span>
 				<em>今天6月13日 20:40</em>
 			</div>
-			<div class="btn" :class="{active :count!=0}">提交订单</div>
+			<div class="btn" :class="{active :count!=0}" @click="submitOrder">提交订单</div>
 		</div>
 
 		<site @order="orderCount"></site>
@@ -24,13 +24,20 @@
 			return {
 				headName : this.$route.query.title ,
 				showReturn :true ,
-				returnUrl : '/cinemaDetail' ,
-				count : 0
+				count : 0 ,
+				amount : 0
 			}
 		},
 		methods :{
-			orderCount(count){
-				this.count = count ;
+			orderCount(order){
+				this.count = order.count ;
+				this.amount = order.amount ;
+			},
+			submitOrder() {
+				//提交订单
+				if(this.count !=0){
+					alert('当前应该支付'+this.amount+'元一共购买'+this.count+'张新木乃伊电影票')
+				}
 			}
 		},
 		components :{

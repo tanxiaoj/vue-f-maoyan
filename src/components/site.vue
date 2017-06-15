@@ -28,7 +28,7 @@
                     <template v-for="(row,index) in rows">
                         <li :row="index+1">
                             <template v-for="(col,index) in cols">
-                                <span :col="index+1" @click="selectSite($event)"></span>
+                                <span :col="index+1" :class="soldFn(row,col)" @click="selectSite($event)"></span>
                             </template>
                         </li>
                     </template>
@@ -46,6 +46,7 @@ export default {
         return {
             rows : "",
             cols : "",
+            solds :[] ,  // 已售座位
             selected : [] ,
             price : 38 ,// 假定一张票40  
             amount : 0 ,
@@ -58,8 +59,30 @@ export default {
         // 简单设置随机影院座位排布
         // 假设 每排 最少4座 最多15座 最少4排最多15排
         randSite() {
+            let sold ;
+            let arr = [];
             this.rows = parseInt(Math.random()*12 + 4); //行
             this.cols = parseInt(Math.random()*12 + 4); //列
+
+            // 随机产生1-10个不重复的已售座位
+            sold = Math.floor(Math.random()*10 + 1) ;
+
+            for(let i=0;i<sold;i++ ){
+                //随机座次
+                let pos = [parseInt(Math.random()*12 + 4),parseInt(Math.random()*12 + 4)] ;
+                arr.push(pos);
+            }
+
+            //遍历当前数组 
+            for(var i = 0; i < arr.length; i++){ 
+
+                if (this.solds.indexOf(arr[i]) == -1) {
+
+                    this.solds.push(arr[i]);
+                } 
+            } 
+
+            
             this.initSite();
         },
         initSite() {
@@ -114,14 +137,14 @@ export default {
             let col = el.getAttribute('col') ;
             let pos = [] ;
             let count ;
-            if(el.className != "active"){
+            if(el.className == ""){
                 if(this.selected.length == 4){
                     alert('最多只能选4个座位');
                     return ;
                 }
                 el.className = "active" ;
                 this.selected.push([row,col]) ;
-            }else{
+            }else if(el.className == "active"){
                 el.className = "";
                 pos = [row,col] ;
                 for(let i = 0; i < this.selected.length ; i++){
@@ -133,7 +156,14 @@ export default {
             }
             this.amount = this.selected.length * this.price ;
             count = this.selected.length ;
-            this.$emit("order",count);
+            this.$emit("order",{count:count,amount:this.amount});
+        },
+        soldFn(row,col){
+            for(let i=0;i<this.solds.length;i++){
+                if(this.solds[i][0]==row && this.solds[i][1]==col){
+                    return 'sold';
+                }
+            }
         },
         getStyle(obj,attr){ 
             if(obj.currentStyle){ 
@@ -288,6 +318,9 @@ export default {
                             }
                             &.active{
                                 background-image: url('@{images}sited.png');
+                            }
+                            &.sold{
+                                background-image: url('@{images}out.png');
                             }
                         }
                         &:nth-last-child(1){
